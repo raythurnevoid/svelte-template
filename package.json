@@ -1,0 +1,48 @@
+{
+	"name": "svelte-app",
+	"version": "1.0.0",
+	"scripts": {
+		"webpack": "cross-env TS_NODE_PROJECT=\"tsconfig.tsnode.json\" webpack",
+		"build": "npm run webpack -- --env production",
+		"analyze": "npm run webpack -- --env analyzeBundle",
+		"watch": "npm run webpack -- --watch",
+		"dev": "npm run webpack -- serve --config webpack.config.devserver.ts --progress --open ",
+		"start": "sirv dist",
+		"validate": "svelte-check"
+	},
+	"browserslist": [
+		"defaults and supports es6-module"
+	],
+	"devDependencies": {
+		"@tsconfig/svelte": "^1.0.10",
+		"@types/copy-webpack-plugin": "^6.4.0",
+		"@types/node": "^14.14.19",
+		"@types/webpack": "^4.41.25",
+		"@types/webpack-dev-server": "^3.11.1",
+		"autoprefixer": "^10.1.0",
+		"clean-webpack-plugin": "^3.0.0",
+		"copy-webpack-plugin": "^7.0.0",
+		"cross-env": "^7.0.3",
+		"css-loader": "^5.0.1",
+		"mini-css-extract-plugin": "^1.3.3",
+		"sass": "^1.32.0",
+		"sass-loader": "^10.1.0",
+		"style-loader": "^2.0.0",
+		"svelte": "^3.31.1",
+		"svelte-check": "^1.1.24",
+		"svelte-loader": "^2.13.6",
+		"svelte-preprocess": "^4.6.1",
+		"ts-loader": "^8.0.13",
+		"ts-node": "^9.1.1",
+		"tsconfig-paths": "^3.9.0",
+		"tslib": "^2.0.3",
+		"typescript": "^4.1.3",
+		"webpack": "^5.11.1",
+		"webpack-bundle-analyzer": "^4.3.0",
+		"webpack-cli": "^4.3.1",
+		"webpack-dev-server": "^3.11.1"
+	},
+	"dependencies": {
+		"sirv-cli": "^1.0.0"
+	}
+}

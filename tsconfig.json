@@ -1,0 +1,26 @@
+{
+	"extends": "@tsconfig/svelte/tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"target": "ES2019",
+		"module": "es2020",
+		"lib": [
+			"DOM",
+			"ES2020",
+			"WebWorker"
+		],
+		"allowSyntheticDefaultImports": true,
+		"keyofStringsOnly": true,
+		"types": [
+			"svelte",
+			"node"
+		]
+	},
+	"include": [
+		"src/**/*"
+	],
+	"exclude": [
+		"node_modules/*",
+		"public/*"
+	]
+}
