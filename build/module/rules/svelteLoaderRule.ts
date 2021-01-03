@@ -1,4 +1,4 @@
-import svelteConfig from "../../../svelte.config";
+import svelteConfig from "../../../svelte.config.js";
 import type { BaseInput } from "../../types";
 import { babelLoader } from "./loaders";
 

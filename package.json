@@ -8,7 +8,12 @@
 		"watch": "npm run webpack -- --watch",
 		"dev": "npm run webpack -- serve --config webpack.config.devserver.ts --progress --open ",
 		"start": "sirv dist",
-		"validate": "svelte-check"
+		"validate": "svelte-check",
+		"clean-lib": "del-cli lib",
+		"copy": "copyfiles ./build/**/*.* package.json tsconfig* webpack* svelte.config.js lib",
+		"lib": "npm-run-all clean-lib copy",
+		"prepackage": "npm run lib",
+		"package": "npm publish ./lib --access public"
 	},
 	"browserslist": [
 		"defaults and supports es6-module"
@@ -22,9 +27,12 @@
 		"autoprefixer": "^10.1.0",
 		"clean-webpack-plugin": "^3.0.0",
 		"copy-webpack-plugin": "^7.0.0",
+		"copyfiles": "^2.4.1",
 		"cross-env": "^7.0.3",
 		"css-loader": "^5.0.1",
+		"del-cli": "^3.0.1",
 		"mini-css-extract-plugin": "^1.3.3",
+		"npm-run-all": "^4.1.5",
 		"sass": "^1.32.0",
 		"sass-loader": "^10.1.0",
 		"style-loader": "^2.0.0",
