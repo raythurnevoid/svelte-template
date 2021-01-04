@@ -10,7 +10,7 @@
 		"start": "sirv dist",
 		"validate": "svelte-check",
 		"clean-lib": "del-cli lib",
-		"copy": "copyfiles ./build/**/*.* package.json tsconfig* webpack* svelte.config.js lib",
+		"copy": "copyfiles ./build/**/*.* package.json tsconfig.json webpack* svelte.config.js lib",
 		"tsc": "tsc -p tsconfig.lib.json",
 		"lib": "npm-run-all clean-lib copy tsc",
 		"prepackage": "npm run lib",

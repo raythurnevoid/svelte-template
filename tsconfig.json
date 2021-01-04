@@ -4,8 +4,6 @@
 		"baseUrl": ".",
 		"target": "ES2019",
 		"module": "es2020",
-		"outDir": "./lib",
-		"declaration": true,
 		"lib": [
 			"DOM",
 			"ES2020",
