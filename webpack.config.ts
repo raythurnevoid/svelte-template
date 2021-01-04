@@ -14,7 +14,7 @@ import CopyPlugin from "copy-webpack-plugin";
 
 const alias = {
 	svelte: path.resolve("node_modules", "svelte"),
-	src: path.resolve(__dirname, "src"),
+	src: path.resolve("src"),
 };
 const extensions = [".ts", ".mjs", ".js", ".svelte"];
 const mainFields = ["svelte", "browser", "module", "main"];
