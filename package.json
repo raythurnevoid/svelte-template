@@ -1,6 +1,6 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"scripts": {
 		"webpack": "cross-env TS_NODE_PROJECT=\"tsconfig.tsnode.json\" webpack",
 		"build": "npm run webpack -- --env production",
@@ -11,7 +11,8 @@
 		"validate": "svelte-check",
 		"clean-lib": "del-cli lib",
 		"copy": "copyfiles ./build/**/*.* package.json tsconfig* webpack* svelte.config.js lib",
-		"lib": "npm-run-all clean-lib copy",
+		"tsc": "tsc -p tsconfig.lib.json",
+		"lib": "npm-run-all clean-lib copy tsc",
 		"prepackage": "npm run lib",
 		"package": "npm publish ./lib --access public"
 	},
