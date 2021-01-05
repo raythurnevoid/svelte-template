@@ -4,5 +4,7 @@ export interface BaseInput {
 
 export interface BaseEnv {
 	production: boolean;
-	analyzeBundle: boolean;
+	analyzeBundle?: boolean;
+	sapper?: boolean;
+	server?: boolean;
 }

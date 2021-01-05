@@ -6,11 +6,14 @@ import {
 	svelteLoaderRule,
 	scssLoaderRule,
 	scssModulesLoaderRule,
+	mjsSapperFixLoaderRule,
+	fileLoaderRule,
 } from "./build/module/rules";
 import type { BaseEnv } from "./build/types";
 import type { Configuration } from "webpack";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import CopyPlugin from "copy-webpack-plugin";
+import { tsConfigPathPlugin } from "./build/resolve/plugins";
 
 const alias = {
 	svelte: path.resolve("node_modules", "svelte"),
@@ -21,6 +24,28 @@ const mainFields = ["svelte", "browser", "module", "main"];
 
 export default function config(env: BaseEnv): Configuration {
 	const plugins = [];
+	const rules = [];
+
+	if (!env.sapper) {
+		plugins.push(
+			new CopyPlugin({
+				patterns: [
+					{
+						from: "public",
+						to: ".",
+					},
+				],
+			})
+		);
+	}
+
+	if (env.server) {
+		rules.push(scssModulesLoaderRule({ env }));
+	}
+
+	if (env.sapper) {
+		rules.push(mjsSapperFixLoaderRule());
+	}
 
 	if (env.analyzeBundle) {
 		plugins.push(new BundleAnalyzerPlugin());
@@ -35,31 +60,25 @@ export default function config(env: BaseEnv): Configuration {
 			filename: "[name].js",
 			chunkFilename: "[name].[id].js",
 		},
-		target: "web",
+		target: env.server ? "node" : "web",
 		resolve: {
 			alias,
 			extensions,
 			mainFields,
+			plugins: [tsConfigPathPlugin()],
 		},
 		module: {
 			rules: [
 				tsLoaderRule({ env }),
-				svelteLoaderRule({ env }),
+				svelteLoaderRule({ env, ssr: env.server }),
 				scssLoaderRule({ env }),
-				scssModulesLoaderRule({ env }),
+				fileLoaderRule(),
+				...rules,
 			],
 		},
 		mode: env.production ? "production" : "development",
 		plugins: [
 			new CleanWebpackPlugin(),
-			new CopyPlugin({
-				patterns: [
-					{
-						from: "public",
-						to: ".",
-					},
-				],
-			}),
 			...plugins,
 			// TODO: MiniCssExtractPlugin
 			// new MiniCssExtractPlugin({
