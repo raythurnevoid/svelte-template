@@ -1,4 +1,4 @@
-import type { BaseInput } from "build/types";
+import type { BaseInput } from "../../../build/types";
 
 export function fileLoaderRule() {
 	return {

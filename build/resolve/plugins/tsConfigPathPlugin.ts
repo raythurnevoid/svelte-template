@@ -1,4 +1,4 @@
-import type { BaseInput } from "build/types";
+import type { BaseInput } from "../../../build/types";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import path from "path";
 
