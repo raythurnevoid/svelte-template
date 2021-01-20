@@ -11,6 +11,7 @@
 		],
 		"allowSyntheticDefaultImports": true,
 		"keyofStringsOnly": true,
+		"resolveJsonModule": true,
 		"types": [
 			"svelte",
 			"node"
