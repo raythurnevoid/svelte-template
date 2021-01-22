@@ -11,4 +11,6 @@ module.exports = {
 			includePaths: [path.resolve("node_modules")],
 		},
 	}),
+	preserveWhitespace: true,
+	dev: true,
 };
