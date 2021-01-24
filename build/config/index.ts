@@ -47,7 +47,7 @@ export function createConfig(env: BaseEnv): Configuration {
 		module: {
 			rules: [
 				tsLoaderRule({ env }),
-				svelteLoaderRule({ env }),
+				...svelteLoaderRule({ env }),
 				scssLoaderRule({ env }),
 				scssModulesLoaderRule({ env }),
 				fileLoaderRule(),

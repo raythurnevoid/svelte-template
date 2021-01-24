@@ -8,9 +8,7 @@ module.exports = {
 			tsconfigFile: path.resolve("tsconfig.json"),
 		},
 		scss: {
-			includePaths: [path.resolve("node_modules")],
+			includePaths: [path.resolve("."), path.resolve("./node_modules")],
 		},
 	}),
-	preserveWhitespace: true,
-	dev: true,
 };

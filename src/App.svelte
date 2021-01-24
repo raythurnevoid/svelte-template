@@ -1,4 +1,5 @@
 <script lang="ts">
+	debugger
 	export let name: string;
 
 	const Lazy = import("./Lazy.svelte");
