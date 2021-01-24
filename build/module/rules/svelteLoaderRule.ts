@@ -4,7 +4,7 @@ import { babelLoader } from "./loaders";
 import sveltePreprocess from "svelte-preprocess";
 import { readTsConfig } from "../../utils/readTsConfig";
 import type { CompilerOptions } from "typescript";
-import { svelteMjsLoaderRule } from "./svelteMjsLoaderRule";
+import { mjsLoaderRule } from "./mjsLoaderRule";
 
 export function svelteLoaderRule(input: SvelteLoaderRuleInput) {
 	const use = [];
@@ -44,7 +44,7 @@ export function svelteLoaderRule(input: SvelteLoaderRuleInput) {
 				},
 			],
 		},
-		svelteMjsLoaderRule(),
+		mjsLoaderRule(),
 	];
 }
 

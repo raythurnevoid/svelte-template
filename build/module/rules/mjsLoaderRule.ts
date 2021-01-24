@@ -1,8 +1,8 @@
 import type { BaseInput } from "../../types";
 
-export function svelteMjsLoaderRule() {
+export function mjsLoaderRule() {
 	return {
-		test: /node_modules\/svelte\/.*\.mjs$/,
+		test: /\.m?js/,
 		resolve: {
 			fullySpecified: false,
 		},
