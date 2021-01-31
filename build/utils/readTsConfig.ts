@@ -1,16 +1,14 @@
-import { readConfigFile, sys } from "typescript";
 import type { CompilerOptions } from "typescript";
+import { readConfigFile, sys } from "typescript";
 import { resolve } from "path";
-import { openSync } from "fs";
 
 export function readTsConfig() {
 	const stack: Stack[] = [];
-	const basePath = resolve(".");
 
-	let nextFilePath = "tsconfig.json";
+	let nextFilePath = "./tsconfig.json";
 
 	while (true) {
-		let filePath = resolve(basePath, nextFilePath);
+		let filePath = nextFilePath;
 
 		if (isInStack(stack, filePath)) {
 			const error = `Circular dependency: ${getStackPaths(
@@ -20,21 +18,11 @@ export function readTsConfig() {
 			throw new Error(error);
 		}
 
-		if (!exists(filePath)) {
-			let nodeModulesFilePath = resolve(basePath, "node_modules", nextFilePath);
-			if (!exists(nodeModulesFilePath)) {
-				const error = `File not found: ${filePath} | ${nodeModulesFilePath}`;
-				console.error(error);
-				throw new Error(error);
-			}
-			filePath = nodeModulesFilePath;
-		}
-
-		const { config } = readConfigFile(filePath, sys.readFile);
+		let config = loadTsConfigFile(filePath);
 
 		stack.push({
 			path: filePath,
-			compilerOptions: config.compilerOptions,
+			compilerOptions: config.compilerOptions ?? {},
 		});
 
 		if (config.extends) {
@@ -49,17 +37,50 @@ export function readTsConfig() {
 		return { ...compilerOptions, ...stack.compilerOptions };
 	}, {} as CompilerOptions);
 
+	console.log(result);
+
 	return result;
 }
 
-function exists(file: string) {
+function loadTsConfigFile(
+	filePath: string
+): {
+	extends?: string;
+	compilerOptions?: CompilerOptions;
+} {
 	try {
-		openSync(file, "r");
-	} catch (err) {
-		return false;
-	}
+		let readTsConfigRes: ReturnType<typeof readConfigFile>;
+		let error: Error;
 
-	return true;
+		readTsConfigRes = readConfigFile(filePath, sys.readFile);
+
+		if (readTsConfigRes.error) {
+			error = new Error(readTsConfigRes.error.messageText as string);
+			// Try with absolute filePath
+			readTsConfigRes = readConfigFile(
+				resolve(process.cwd(), filePath),
+				sys.readFile
+			);
+		}
+
+		if (readTsConfigRes.error) {
+			error = new Error(readTsConfigRes.error.messageText as string);
+			// Maybe the path is in the locally installed cwd-level node_modules.
+			readTsConfigRes = readConfigFile(
+				resolve(process.cwd(), "node_modules", filePath),
+				sys.readFile
+			);
+		}
+
+		if (readTsConfigRes.error) {
+			throw error;
+		}
+
+		return readTsConfigRes.config;
+	} catch (e) {
+		const error = `Error loading tsconfig file: ${filePath}.\n Caused by > ${e.stack}`;
+		throw new Error(error);
+	}
 }
 
 function isInStack(stack: Stack[], path: string) {
