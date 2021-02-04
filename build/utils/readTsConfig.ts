@@ -37,8 +37,6 @@ export function readTsConfig() {
 		return { ...compilerOptions, ...stack.compilerOptions };
 	}, {} as CompilerOptions);
 
-	console.log(result);
-
 	return result;
 }
 
