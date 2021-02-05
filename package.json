@@ -1,12 +1,15 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.0.15",
+	"version": "0.0.16",
 	"scripts": {
-		"webpack": "cross-env TS_NODE_PROJECT=\"tsconfig.tsnode.json\" webpack",
-		"build": "npm run webpack -- --env production",
-		"analyze": "npm run webpack -- --env analyzeBundle",
-		"watch": "npm run webpack -- --watch",
+		"env": "cross-env TS_NODE_PROJECT=\"tsconfig.tsnode.json\"",
+		"ts-node": "npm run env -- node -r ts-node/register -r tsconfig-paths/register --",
+		"ts-node:inspect": "npm run ts-node -- --inspect --",
+		"webpack": "npm run env -- webpack --",
 		"dev": "npm run webpack -- serve --config webpack.config.devserver.ts --progress --open ",
+		"build": "npm run webpack -- --env production",
+		"watch": "npm run webpack -- --watch",
+		"analyze": "npm run webpack -- --env analyzeBundle",
 		"start": "sirv dist",
 		"validate": "svelte-check",
 		"clean-lib": "del-cli lib",
@@ -20,7 +23,7 @@
 		"defaults and supports es6-module"
 	],
 	"devDependencies": {
-		"autoprefixer": "^10.2.1",
+		"autoprefixer": "^10.2.4",
 		"copyfiles": "^2.4.1"
 	},
 	"dependencies": {
@@ -45,7 +48,7 @@
 		"sass-loader": "^10.1.1",
 		"sirv-cli": "^1.0.11",
 		"style-loader": "^2.0.0",
-		"ts-loader": "^8.0.14",
+		"ts-loader": "^8.0.15",
 		"ts-node": "^9.1.1",
 		"tsconfig-paths": "^3.9.0",
 		"tsconfig-paths-webpack-plugin": "^3.3.0",

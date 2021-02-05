@@ -1,5 +1,4 @@
 // import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import path from "path";
 import {
 	tsLoaderRule,
@@ -8,10 +7,13 @@ import {
 	scssModulesLoaderRule,
 	fileLoaderRule,
 } from "../module/rules";
+import {
+	bundleAnalyzerPlugin,
+	cleanWebpackPlugin,
+	copyPlugin,
+} from "../plugins";
 import type { BaseEnv } from "../types";
 import type { Configuration } from "webpack";
-import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-import CopyPlugin from "copy-webpack-plugin";
 import { tsConfigPathPlugin } from "../resolve/plugins";
 
 const alias = {
@@ -25,7 +27,7 @@ export function createConfig(env: BaseEnv): Configuration {
 	const plugins = [];
 
 	if (env.analyzeBundle) {
-		plugins.push(new BundleAnalyzerPlugin());
+		plugins.push(bundleAnalyzerPlugin());
 	}
 
 	return {
@@ -55,15 +57,8 @@ export function createConfig(env: BaseEnv): Configuration {
 		},
 		mode: env.production ? "production" : "development",
 		plugins: [
-			new CleanWebpackPlugin(),
-			new CopyPlugin({
-				patterns: [
-					{
-						from: "public",
-						to: ".",
-					},
-				],
-			}),
+			cleanWebpackPlugin(),
+			copyPlugin(),
 			...plugins,
 			// TODO: MiniCssExtractPlugin
 			// new MiniCssExtractPlugin({
