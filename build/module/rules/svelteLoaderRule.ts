@@ -1,6 +1,6 @@
 import svelteConfig from "../../../svelte.config.js";
 import type { BaseInput } from "../../types";
-import { babelLoader } from "./loaders";
+import { babelLoader, TsLoaderInput } from "./loaders";
 import sveltePreprocess from "svelte-preprocess";
 import { readTsConfig } from "../../utils/readTsConfig";
 import type { CompilerOptions } from "typescript";
@@ -25,7 +25,7 @@ export function svelteLoaderRule(input: SvelteLoaderRuleInput) {
 								typescript: {
 									...svelteConfig.preprocess.typescript,
 									compilerOptions: {
-										...readTsConfig(),
+										...readTsConfig(input.tsConfigPath),
 									} as CompilerOptions,
 									stripIndent: false,
 								},
@@ -48,7 +48,7 @@ export function svelteLoaderRule(input: SvelteLoaderRuleInput) {
 	];
 }
 
-interface SvelteLoaderRuleInput extends BaseInput {
+interface SvelteLoaderRuleInput extends BaseInput, TsLoaderInput {
 	ssr?: boolean;
 	babel?: boolean;
 }

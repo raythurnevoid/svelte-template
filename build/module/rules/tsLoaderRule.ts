@@ -1,5 +1,5 @@
 import type { BaseInput } from "../../types";
-import { babelLoader, tsLoader } from "./loaders";
+import { babelLoader, tsLoader, TsLoaderInput } from "./loaders";
 
 export function tsLoaderRule(input: TsLoaderRuleInput) {
 	const use = [];
@@ -8,10 +8,10 @@ export function tsLoaderRule(input: TsLoaderRuleInput) {
 
 	return {
 		test: /\.ts$/,
-		use: [...use, tsLoader()],
+		use: [...use, tsLoader(input)],
 	};
 }
 
-interface TsLoaderRuleInput extends BaseInput {
+interface TsLoaderRuleInput extends BaseInput, TsLoaderInput {
 	babel?: boolean;
 }

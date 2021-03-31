@@ -2,10 +2,10 @@ import type { CompilerOptions } from "typescript";
 import { readConfigFile, sys } from "typescript";
 import { resolve } from "path";
 
-export function readTsConfig() {
+export function readTsConfig(path = "./tsconfig.json") {
 	const stack: Stack[] = [];
 
-	let nextFilePath = "./tsconfig.json";
+	let nextFilePath = path;
 
 	while (true) {
 		let filePath = nextFilePath;
