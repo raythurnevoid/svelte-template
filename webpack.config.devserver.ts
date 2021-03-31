@@ -9,6 +9,7 @@ export default function config(env: BaseEnv): Configuration {
 
 	return {
 		...baseConfig,
+		// @ts-ignore
 		devServer: {
 			contentBase: path.resolve("dist"),
 			writeToDisk: true,
