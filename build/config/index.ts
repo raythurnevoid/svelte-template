@@ -21,12 +21,16 @@ const alias = {
 	src: path.resolve("src"),
 };
 const extensions = [".ts", ".mjs", ".js", ".svelte"];
-const mainFields = ["svelte", "browser", "module", "main"];
 
 export function createConfig(
 	input: SvelteTempalteConfigurationInput
 ): Configuration {
 	const { env } = input;
+
+	let mainFields = ["svelte", "browser", "module", "main"];
+	if (env.server) {
+		mainFields = ["svelte", "module", "main"];
+	}
 
 	const plugins: WebpackPluginInstance[] = [];
 
@@ -66,7 +70,7 @@ export function createConfig(
 		module: {
 			rules: [
 				tsLoaderRule({ env }),
-				...svelteLoaderRule({ env }),
+				...svelteLoaderRule({ env, ssr: env.server }),
 				scssLoaderRule({ env, extract: input.extractCss }),
 				scssModulesLoaderRule({ env, extract: input.extractCss }),
 				fileLoaderRule(),
