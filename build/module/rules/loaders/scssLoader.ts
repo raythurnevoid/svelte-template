@@ -5,7 +5,9 @@ export function scssLoader(input: ScssLoaderInput) {
 	return {
 		loader: "sass-loader",
 		options: {
-			includePaths: [path.resolve("../../../../node_modules")],
+			sassOptions: {
+				includePaths: [path.resolve("../../../../node_modules")],
+			},
 			sourceMap: !input.env.production,
 		},
 	};

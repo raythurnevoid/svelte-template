@@ -14,6 +14,4 @@ export function scssModulesLoaderRule(input: SvelteLoaderRuleInput) {
 	};
 }
 
-interface SvelteLoaderRuleInput extends BaseInput {
-	ssr?: boolean;
-}
+interface SvelteLoaderRuleInput extends BaseInput {}
