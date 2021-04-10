@@ -1,6 +1,6 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.0.23",
+	"version": "0.0.24",
 	"scripts": {
 		"env": "cross-env TS_NODE_PROJECT=\"tsconfig.tsnode.json\"",
 		"ts-node": "npm run env -- node -r ts-node/register -r tsconfig-paths/register --",
