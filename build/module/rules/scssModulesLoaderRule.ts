@@ -1,25 +1,21 @@
+import type { Configuration } from "webpack";
 import type { BaseInput } from "../../types";
 import { cssLoader, scssLoader } from "./loaders";
+import type { CssLoaderInput } from "./loaders";
 
-export function scssModulesLoaderRule(input: SvelteLoaderRuleInput) {
-	const loaders = [];
-
-	if (!input.server) {
-		loaders.push("style-loader");
-	}
-
-	// TODO: MiniCssExtractPlugin.loader
+export function scssModulesLoaderRule(
+	input: ScssModulesLoaderRuleInput
+): Configuration["module"]["rules"][0] {
 	return {
 		test: /module\.s?css$/,
 		use: [
-			"style-loader",
 			//"@teamsupercell/typings-for-css-modules-loader", issues with sapper ...
-			cssLoader({ ...input, modules: true }),
+			...cssLoader({ ...input, modules: true }),
 			scssLoader(input),
 		],
 	};
 }
 
-interface SvelteLoaderRuleInput extends BaseInput {
-	server?: boolean;
-}
+export interface ScssModulesLoaderRuleInput
+	extends BaseInput,
+		Pick<CssLoaderInput, "extract"> {}

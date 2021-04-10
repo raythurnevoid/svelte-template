@@ -1,28 +1,44 @@
 import type { BaseInput } from "../../../types";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import type { RuleSetUseItem } from "webpack";
 
-export function cssLoader(input: CssLoaderInput) {
+export function cssLoader(input: CssLoaderInput): RuleSetUseItem[] {
+	let loaders: RuleSetUseItem[] = [];
+	if (!input.env.server) {
+		if (input.extract) {
+			loaders.push({
+				loader: "style-loader",
+			});
+		} else {
+			loaders.push(MiniCssExtractPlugin.loader);
+		}
+	}
+
 	let modules: any;
 	if (input.modules) {
 		modules = {
 			localIdentName: "[local]--[hash:base64:5]",
 		};
 
-		if (input.server) {
+		if (input.env.server) {
 			modules.exportOnlyLocals = true;
 		}
 	}
 
-	return {
-		loader: "css-loader",
-		options: {
-			modules,
-			esModule: input.modules,
-			sourceMap: !input.env.production,
+	return [
+		...loaders,
+		{
+			loader: "css-loader",
+			options: {
+				modules,
+				esModule: input.modules,
+				sourceMap: !input.env.production,
+			},
 		},
-	};
+	];
 }
 
-interface CssLoaderInput extends BaseInput {
+export interface CssLoaderInput extends BaseInput {
 	modules?: boolean;
-	server?: boolean;
+	extract?: boolean;
 }

@@ -1,4 +1,4 @@
-// import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "path";
 import {
 	tsLoaderRule,
@@ -12,8 +12,8 @@ import {
 	cleanWebpackPlugin,
 	copyPlugin,
 } from "../plugins";
-import type { BaseEnv } from "../types";
-import type { Configuration } from "webpack";
+import type { BaseInput } from "../types";
+import type { Configuration, WebpackPluginInstance } from "webpack";
 import { tsConfigPathPlugin } from "../resolve/plugins";
 
 const alias = {
@@ -23,8 +23,25 @@ const alias = {
 const extensions = [".ts", ".mjs", ".js", ".svelte"];
 const mainFields = ["svelte", "browser", "module", "main"];
 
-export function createConfig(env: BaseEnv): Configuration {
-	const plugins = [];
+export function createConfig(
+	input: SvelteTempalteConfigurationInput
+): Configuration {
+	const { env } = input;
+
+	const plugins: WebpackPluginInstance[] = [];
+
+	if (!env.server) {
+		plugins.push(cleanWebpackPlugin());
+		plugins.push(copyPlugin());
+	}
+
+	if (input.extractCss && !env.server) {
+		plugins.push(
+			new MiniCssExtractPlugin({
+				filename: "[name].css",
+			})
+		);
+	}
 
 	if (env.analyzeBundle) {
 		plugins.push(bundleAnalyzerPlugin());
@@ -50,21 +67,17 @@ export function createConfig(env: BaseEnv): Configuration {
 			rules: [
 				tsLoaderRule({ env }),
 				...svelteLoaderRule({ env }),
-				scssLoaderRule({ env }),
-				scssModulesLoaderRule({ env }),
+				scssLoaderRule({ env, extract: input.extractCss }),
+				scssModulesLoaderRule({ env, extract: input.extractCss }),
 				fileLoaderRule(),
 			],
 		},
 		mode: env.production ? "production" : "development",
-		plugins: [
-			cleanWebpackPlugin(),
-			copyPlugin(),
-			...plugins,
-			// TODO: MiniCssExtractPlugin
-			// new MiniCssExtractPlugin({
-			// 	filename: "[name].css",
-			// }),
-		],
+		plugins: [...plugins],
 		devtool: env.production ? false : "source-map",
 	};
+}
+
+export interface SvelteTempalteConfigurationInput extends BaseInput {
+	extractCss?: boolean;
 }
