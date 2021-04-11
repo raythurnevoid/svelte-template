@@ -11,6 +11,7 @@ import {
 	cleanWebpackPlugin,
 	copyPlugin,
 	cssExtractPlugin,
+	cssMinimizerPlugin,
 } from "../plugins";
 import type { BaseInput } from "../types";
 import type { Configuration, WebpackPluginInstance } from "webpack";
@@ -37,10 +38,14 @@ export function createConfig(
 	if (!env.server) {
 		plugins.push(cleanWebpackPlugin());
 		plugins.push(copyPlugin());
-	}
 
-	if (input.extractCss && !env.server) {
-		plugins.push(cssExtractPlugin());
+		if (input.env.production) {
+			plugins.push(cssMinimizerPlugin());
+		}
+
+		if (input.extractCss) {
+			plugins.push(cssExtractPlugin());
+		}
 	}
 
 	if (env.analyzeBundle) {
