@@ -9,7 +9,7 @@ export function scssLoaderRule(input: ScssLoaderRuleInput): RuleSetRule {
 		exclude: /module\.s?css$/,
 		use: [
 			//"@teamsupercell/typings-for-css-modules-loader", issues with sapper ...
-			...cssLoader({ ...input }),
+			...cssLoader(input),
 			scssLoader(input),
 		],
 	};

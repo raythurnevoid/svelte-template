@@ -6,11 +6,11 @@ export function cssLoader(input: CssLoaderInput): RuleSetUseItem[] {
 	let loaders: RuleSetUseItem[] = [];
 	if (!input.env.server) {
 		if (input.extract) {
+			loaders.push(MiniCssExtractPlugin.loader);
+		} else {
 			loaders.push({
 				loader: "style-loader",
 			});
-		} else {
-			loaders.push(MiniCssExtractPlugin.loader);
 		}
 	}
 
