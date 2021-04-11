@@ -1,11 +1,11 @@
-import type { Configuration } from "webpack";
+import type { RuleSetRule } from "webpack";
 import type { BaseInput } from "../../types";
 import { cssLoader, scssLoader } from "./loaders";
 import type { CssLoaderInput } from "./loaders";
 
 export function scssModulesLoaderRule(
 	input: ScssModulesLoaderRuleInput
-): Configuration["module"]["rules"][0] {
+): RuleSetRule {
 	return {
 		test: /module\.s?css$/,
 		use: [

@@ -1,4 +1,3 @@
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "path";
 import {
 	tsLoaderRule,
@@ -11,6 +10,7 @@ import {
 	bundleAnalyzerPlugin,
 	cleanWebpackPlugin,
 	copyPlugin,
+	cssExtractPlugin,
 } from "../plugins";
 import type { BaseInput } from "../types";
 import type { Configuration, WebpackPluginInstance } from "webpack";
@@ -40,11 +40,7 @@ export function createConfig(
 	}
 
 	if (input.extractCss && !env.server) {
-		plugins.push(
-			new MiniCssExtractPlugin({
-				filename: "[name].css",
-			})
-		);
+		plugins.push(cssExtractPlugin());
 	}
 
 	if (env.analyzeBundle) {
