@@ -2,8 +2,7 @@ import svelteConfig from "../../../svelte.config.js";
 import type { BaseInput } from "../../types";
 import { babelLoader, TsLoaderInput } from "./loaders";
 import sveltePreprocess from "svelte-preprocess";
-import { readTsConfig } from "../../utils/readTsConfig";
-import type { CompilerOptions } from "typescript";
+import { getTsConfigPath, readTsConfig } from "../../utils/readTsConfig";
 import { mjsLoaderRule } from "./mjsLoaderRule";
 
 export function svelteLoaderRule(input: SvelteLoaderRuleInput) {
@@ -24,22 +23,23 @@ export function svelteLoaderRule(input: SvelteLoaderRuleInput) {
 							...sveltePreprocess({
 								typescript: {
 									...svelteConfig.preprocess.typescript,
-									compilerOptions: {
-										...readTsConfig(input.tsConfigPath),
-									} as CompilerOptions,
-									stripIndent: false,
+									tsconfigFile: input.tsConfigPath ?? getTsConfigPath(),
+									// compilerOptions: {
+									// 	...readTsConfig(input.tsConfigPath),
+									// } as CompilerOptions,
+									stripIndent: !input.env.production,
 								},
 							}),
 						},
 						compilerOptions: {
 							dev: !input.env.production,
-							css: !input.ssr,
-							hydratable: !input.ssr,
-							generate: input.ssr ? "ssr" : undefined,
+							css: !input.env.server && !input.emitCss,
+							hydratable: input.ssr,
+							generate: input.ssr && input.env.server ? "ssr" : undefined,
 							preserveWhitespace: !input.env.production,
 						},
-						//emitCss: ssr, waiting: https://github.com/sveltejs/svelte-loader/pull/136
-						hotReload: false, // pending https://github.com/sveltejs/svelte/issues/2377
+						emitCss: input.emitCss,
+						hotReload: !input.env.production,
 					},
 				},
 			],
@@ -51,4 +51,5 @@ export function svelteLoaderRule(input: SvelteLoaderRuleInput) {
 interface SvelteLoaderRuleInput extends BaseInput, TsLoaderInput {
 	ssr?: boolean;
 	babel?: boolean;
+	emitCss?: boolean;
 }

@@ -1,9 +1,24 @@
 <script lang="ts">
-	debugger
+	debugger;
 	export let name: string;
 
 	const Lazy = import("./Lazy.svelte");
 </script>
+
+<main>
+	<h1>Hello {name}!</h1>
+	<p>
+		Visit the
+		<a href="https://svelte.dev/tutorial">Svelte tutorial</a>
+		to learn how to build Svelte apps.
+	</p>
+
+	{#await Lazy}
+		...loading
+	{:then Component}
+		<svelte:component this={Component.default} />
+	{/await}
+</main>
 
 <style lang="scss">
 	$color: #ff3e00;
@@ -28,18 +43,3 @@
 		}
 	}
 </style>
-
-<main>
-	<h1>Hello {name}!</h1>
-	<p>
-		Visit the
-		<a href="https://svelte.dev/tutorial">Svelte tutorial</a>
-		to learn how to build Svelte apps.
-	</p>
-
-	{#await Lazy}
-		...loading
-	{:then Component}
-		<svelte:component this={Component.default} />
-	{/await}
-</main>

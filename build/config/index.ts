@@ -52,7 +52,7 @@ export function createConfig(
 		plugins.push(bundleAnalyzerPlugin());
 	}
 
-	return {
+	const conf: Configuration = {
 		entry: {
 			app: ["./src/main.ts"],
 		},
@@ -71,7 +71,7 @@ export function createConfig(
 		module: {
 			rules: [
 				tsLoaderRule({ env }),
-				...svelteLoaderRule({ env, ssr: env.server }),
+				...svelteLoaderRule({ env, emitCss: input.extractCss }),
 				scssLoaderRule({ env, extract: input.extractCss }),
 				scssModulesLoaderRule({ env, extract: input.extractCss }),
 				fileLoaderRule(),
@@ -81,6 +81,10 @@ export function createConfig(
 		plugins: [...plugins],
 		devtool: env.production ? false : "source-map",
 	};
+
+	console.log(conf);
+
+	return conf;
 }
 
 export interface SvelteTempalteConfigurationInput extends BaseInput {

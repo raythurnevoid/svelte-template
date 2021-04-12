@@ -13,6 +13,7 @@ export default function config(env: BaseEnv): Configuration {
 		devServer: {
 			contentBase: path.resolve("dist"),
 			writeToDisk: true,
+			hot: true,
 		},
 	};
 }
