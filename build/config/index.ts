@@ -82,8 +82,6 @@ export function createConfig(
 		devtool: env.production ? false : "source-map",
 	};
 
-	console.log(conf);
-
 	return conf;
 }
 
