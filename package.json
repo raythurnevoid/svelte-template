@@ -1,6 +1,6 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.0.32",
+	"version": "0.0.33-beta.0",
 	"scripts": {
 		"env": "cross-env TS_NODE_PROJECT=\"tsconfig.tsnode.json\"",
 		"ts-node": "npm run env -- node -r ts-node/register -r tsconfig-paths/register --",
@@ -17,7 +17,7 @@
 		"tsc": "tsc -p tsconfig.lib.json",
 		"lib": "npm-run-all clean-lib copy tsc",
 		"prepackage": "npm run lib",
-		"package": "npm publish ./lib --access public"
+		"package": "npm publish ./lib --access public --"
 	},
 	"browserslist": [
 		"defaults and supports es6-module"
@@ -46,7 +46,7 @@
 		"style-loader": "^2.0.0",
 		"svelte": "^3.37.0",
 		"svelte-check": "^1.4.0",
-		"svelte-loader": "3.0.0",
+		"svelte-loader": "non25/svelte-loader#fix-sources-content",
 		"svelte-preprocess": "^4.7.0",
 		"ts-loader": "^8.1.0",
 		"ts-node": "^9.1.1",
