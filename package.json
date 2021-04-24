@@ -1,6 +1,6 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.0.33",
+	"version": "0.0.34",
 	"scripts": {
 		"env": "cross-env TS_NODE_PROJECT=\"tsconfig.tsnode.json\"",
 		"ts-node": "npm run env -- node -r ts-node/register -r tsconfig-paths/register --",
@@ -48,7 +48,7 @@
 		"svelte-check": "^1.4.0",
 		"svelte-loader": "^3.1.1",
 		"svelte-preprocess": "^4.7.2",
-		"ts-loader": "^9.0.2",
+		"ts-loader": "8.1.0",
 		"ts-node": "^9.1.1",
 		"tsconfig-paths": "^3.9.0",
 		"tsconfig-paths-webpack-plugin": "^3.5.1",
