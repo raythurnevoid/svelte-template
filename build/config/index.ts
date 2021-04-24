@@ -34,22 +34,21 @@ export function createConfig(
 	}
 
 	const plugins: WebpackPluginInstance[] = [];
-
 	if (!env.server) {
 		plugins.push(cleanWebpackPlugin());
 		plugins.push(copyPlugin());
-
-		if (input.env.production) {
-			plugins.push(cssMinimizerPlugin());
-		}
 
 		if (input.extractCss) {
 			plugins.push(cssExtractPlugin());
 		}
 	}
-
 	if (env.analyzeBundle) {
 		plugins.push(bundleAnalyzerPlugin());
+	}
+
+	const minimizers: WebpackPluginInstance[] = [];
+	if (input.env.production) {
+		minimizers.push(cssMinimizerPlugin());
 	}
 
 	const conf: Configuration = {
@@ -78,7 +77,10 @@ export function createConfig(
 			],
 		},
 		mode: env.production ? "production" : "development",
-		plugins: [...plugins],
+		optimization: {
+			minimizer: minimizers,
+		},
+		plugins: plugins,
 		devtool: env.production ? false : "source-map",
 	};
 

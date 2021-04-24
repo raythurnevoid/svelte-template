@@ -1,8 +1,8 @@
-import svelteConfig from "../../../svelte.config.js";
+import { preprocessConfig } from "../../../svelte.config";
 import type { BaseInput } from "../../types";
 import { babelLoader, TsLoaderInput } from "./loaders";
 import sveltePreprocess from "svelte-preprocess";
-import { getTsConfigPath, readTsConfig } from "../../utils/readTsConfig";
+import { getTsConfigPath } from "../../utils/readTsConfig";
 import { mjsLoaderRule } from "./mjsLoaderRule";
 
 export function svelteLoaderRule(input: SvelteLoaderRuleInput) {
@@ -19,10 +19,10 @@ export function svelteLoaderRule(input: SvelteLoaderRuleInput) {
 					loader: "svelte-loader",
 					options: {
 						preprocess: {
-							...svelteConfig.preprocess,
 							...sveltePreprocess({
+								...preprocessConfig,
 								typescript: {
-									...svelteConfig.preprocess.typescript,
+									...preprocessConfig.typescript,
 									tsconfigFile: input.tsConfigPath ?? getTsConfigPath(),
 									// compilerOptions: {
 									// 	...readTsConfig(input.tsConfigPath),
