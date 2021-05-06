@@ -1,6 +1,6 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.0.34",
+	"version": "0.0.35",
 	"scripts": {
 		"env": "cross-env TS_NODE_PROJECT=\"tsconfig.tsnode.json\"",
 		"ts-node": "npm run env -- node -r ts-node/register -r tsconfig-paths/register --",
@@ -20,7 +20,7 @@
 		"package": "npm publish ./lib --access public --"
 	},
 	"browserslist": [
-		"defaults and supports es6-module"
+		"last 1 year and >2% and supports es6-module"
 	],
 	"devDependencies": {
 		"autoprefixer": "^10.2.5",
@@ -28,7 +28,7 @@
 	},
 	"dependencies": {
 		"@tsconfig/svelte": "^1.0.10",
-		"@types/copy-webpack-plugin": "^6.4.1",
+		"@types/copy-webpack-plugin": "^8.0.0",
 		"@types/node": "^14.14.41",
 		"@types/webpack-dev-server": "^3.11.3",
 		"clean-webpack-plugin": "^3.0.0",
@@ -38,25 +38,25 @@
 		"css-minimizer-webpack-plugin": "^2.0.0",
 		"del-cli": "^3.0.1",
 		"file-loader": "^6.2.0",
-		"mini-css-extract-plugin": "^1.5.0",
+		"mini-css-extract-plugin": "^1.6.0",
 		"npm-run-all": "^4.1.5",
-		"sass": "^1.32.11",
+		"sass": "^1.32.12",
 		"sass-loader": "^11.0.1",
 		"sirv-cli": "^1.0.11",
 		"style-loader": "^2.0.0",
-		"svelte": "^3.37.0",
-		"svelte-check": "^1.4.0",
+		"svelte": "^3.38.2",
+		"svelte-check": "^1.5.2",
 		"svelte-loader": "^3.1.1",
-		"svelte-preprocess": "^4.7.2",
-		"ts-loader": "8.1.0",
+		"svelte-preprocess": "^4.7.3",
+		"ts-loader": "9.1.2",
 		"ts-node": "^9.1.1",
 		"tsconfig-paths": "^3.9.0",
 		"tsconfig-paths-webpack-plugin": "^3.5.1",
 		"tslib": "^2.2.0",
 		"typescript": "^4.2.4",
-		"webpack": "^5.35.0",
+		"webpack": "^5.36.2",
 		"webpack-bundle-analyzer": "^4.4.1",
-		"webpack-cli": "^4.6.0",
+		"webpack-cli": "^4.7.0",
 		"webpack-dev-server": "^3.11.2"
 	}
 }
