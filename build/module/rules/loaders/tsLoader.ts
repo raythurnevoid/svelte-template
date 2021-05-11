@@ -1,5 +1,5 @@
 import type { Options } from "ts-loader";
-import { getTsConfigPath, readTsConfig } from "../../../utils/readTsConfig";
+import { getTsConfigPath } from "../../../utils/readTsConfig";
 
 export function tsLoader(input: TsLoaderInput) {
 	return {
@@ -7,9 +7,6 @@ export function tsLoader(input: TsLoaderInput) {
 		options: {
 			allowTsInNodeModules: true,
 			configFile: input.tsConfigPath ?? getTsConfigPath(),
-			// compilerOptions: {
-			// 	...readTsConfig(input.tsConfigPath),
-			// },
 		} as Options,
 	};
 }
