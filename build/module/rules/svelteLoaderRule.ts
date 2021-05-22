@@ -5,6 +5,20 @@ import sveltePreprocess from "svelte-preprocess";
 import { getTsConfigPath } from "../../utils/readTsConfig";
 import { mjsLoaderRule } from "./mjsLoaderRule";
 
+export function getPreprocessConfig(input: SvelteLoaderRulePreprocessInput) {
+	return {
+		...preprocessConfig,
+		typescript: {
+			...preprocessConfig.typescript,
+			tsconfigFile: input.tsConfigPath ?? getTsConfigPath(),
+			compilerOptions: {
+				target: input.target ?? "ES2019",
+			},
+			stripIndent: !input.env.production,
+		},
+	};
+}
+
 export function svelteLoaderRule(input: SvelteLoaderRuleInput) {
 	const use = [];
 
@@ -18,19 +32,7 @@ export function svelteLoaderRule(input: SvelteLoaderRuleInput) {
 				{
 					loader: "svelte-loader",
 					options: {
-						preprocess: {
-							...sveltePreprocess({
-								...preprocessConfig,
-								typescript: {
-									...preprocessConfig.typescript,
-									tsconfigFile: input.tsConfigPath ?? getTsConfigPath(),
-									// compilerOptions: {
-									// 	...readTsConfig(input.tsConfigPath),
-									// } as CompilerOptions,
-									stripIndent: !input.env.production,
-								},
-							}),
-						},
+						preprocess: sveltePreprocess(getPreprocessConfig(input)),
 						compilerOptions: {
 							dev: !input.env.production,
 							css: !input.env.server && !input.emitCss,
@@ -45,11 +47,18 @@ export function svelteLoaderRule(input: SvelteLoaderRuleInput) {
 			],
 		},
 		mjsLoaderRule(),
-	];
+	] as const;
 }
 
-interface SvelteLoaderRuleInput extends BaseInput, TsLoaderInput {
+interface SvelteLoaderRuleInput
+	extends BaseInput,
+		TsLoaderInput,
+		SvelteLoaderRulePreprocessInput {
 	ssr?: boolean;
 	babel?: boolean;
 	emitCss?: boolean;
+}
+
+interface SvelteLoaderRulePreprocessInput extends BaseInput, TsLoaderInput {
+	target: "ES6" | "ES2019";
 }
