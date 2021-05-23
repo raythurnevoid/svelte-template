@@ -1,6 +1,7 @@
+import type { RuleSetRule } from "webpack";
 import type { BaseInput } from "../../types";
 
-export function mjsLoaderRule() {
+export function mjsLoaderRule(): RuleSetRule {
 	return {
 		test: /\.m?js/,
 		resolve: {

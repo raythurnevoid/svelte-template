@@ -13,7 +13,10 @@ export default function config(env: BaseEnv): Configuration {
 
 	delete process.env.TS_NODE_PROJECT;
 
-	const baseConfig = createConfig({ env, extractCss: true });
+	const baseConfig = createConfig({
+		env,
+		extractCss: true,
+	});
 
 	return {
 		...baseConfig,

@@ -6,4 +6,5 @@ export interface BaseEnv {
 	production: boolean;
 	analyzeBundle?: boolean;
 	server?: boolean;
+	fancyProgress: boolean;
 }

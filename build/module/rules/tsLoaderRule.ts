@@ -1,7 +1,8 @@
+import type { RuleSetRule } from "webpack";
 import type { BaseInput } from "../../types";
 import { babelLoader, tsLoader, TsLoaderInput } from "./loaders";
 
-export function tsLoaderRule(input: TsLoaderRuleInput) {
+export function tsLoaderRule(input: TsLoaderRuleInput): RuleSetRule {
 	const use = [];
 
 	if (input.babel) use.push(babelLoader(input));

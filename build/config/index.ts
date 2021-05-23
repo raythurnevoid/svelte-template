@@ -12,6 +12,7 @@ import {
 	copyPlugin,
 	cssExtractPlugin,
 	cssMinimizerPlugin,
+	progressPlugin,
 } from "../plugins";
 import type { BaseInput } from "../types";
 import type { Configuration, WebpackPluginInstance } from "webpack";
@@ -44,6 +45,9 @@ export function createConfig(
 	}
 	if (env.analyzeBundle) {
 		plugins.push(bundleAnalyzerPlugin());
+	}
+	if (env.fancyProgress) {
+		plugins.push(progressPlugin());
 	}
 
 	const minimizers: WebpackPluginInstance[] = [];
