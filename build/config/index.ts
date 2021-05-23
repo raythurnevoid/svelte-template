@@ -13,6 +13,7 @@ import {
 	cssExtractPlugin,
 	cssMinimizerPlugin,
 	progressPlugin,
+	tsCheckPlugin,
 } from "../plugins";
 import type { BaseInput } from "../types";
 import type { Configuration, WebpackPluginInstance } from "webpack";
@@ -34,7 +35,7 @@ export function createConfig(
 		mainFields = ["svelte", "module", "main"];
 	}
 
-	const plugins: WebpackPluginInstance[] = [];
+	const plugins: WebpackPluginInstance[] = [tsCheckPlugin({})];
 	if (!env.server) {
 		plugins.push(cleanWebpackPlugin());
 		plugins.push(copyPlugin());

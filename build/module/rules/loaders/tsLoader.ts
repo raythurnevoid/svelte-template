@@ -7,6 +7,7 @@ export function tsLoader(input: TsLoaderInput) {
 		options: {
 			allowTsInNodeModules: true,
 			configFile: input.tsConfigPath ?? getTsConfigPath(),
+			transpileOnly: true,
 		} as Options,
 	};
 }
