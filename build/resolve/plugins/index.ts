@@ -1,1 +1,1 @@
-export * from "./tsConfigPathPlugin";
+export * from "./tsConfigPathPlugin.js";

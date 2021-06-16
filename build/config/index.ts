@@ -5,7 +5,7 @@ import {
 	scssLoaderRule,
 	scssModulesLoaderRule,
 	fileLoaderRule,
-} from "../module/rules";
+} from "../module/rules/index.js";
 import {
 	bundleAnalyzerPlugin,
 	cleanWebpackPlugin,
@@ -14,10 +14,10 @@ import {
 	cssMinimizerPlugin,
 	progressPlugin,
 	tsCheckPlugin,
-} from "../plugins";
-import type { BaseInput } from "../types";
+} from "../plugins/index.js";
+import type { BaseInput } from "../types.js";
 import type { Configuration, WebpackPluginInstance } from "webpack";
-import { tsConfigPathPlugin } from "../resolve/plugins";
+import { tsConfigPathPlugin } from "../resolve/plugins/index.js";
 
 const alias = {
 	svelte: path.resolve("node_modules", "svelte"),

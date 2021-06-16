@@ -4,9 +4,9 @@ import CopyPlugin from "copy-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import WebpackBarPlugin from "webpackbar";
-import type { TsLoaderInput } from "../module/rules/loaders";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
-import { getTsConfigPath } from "../utils/readTsConfig";
+import type { TsLoaderInput } from "../module/rules/loaders/index.js";
+import { getTsConfigPath } from "../utils/readTsConfig.js";
 
 export function bundleAnalyzerPlugin() {
 	return new BundleAnalyzerPlugin();

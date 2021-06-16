@@ -1,6 +1,6 @@
 import path from "path";
-import type { BaseEnv } from "./build/types";
-import createBaseConfig from "./webpack.config";
+import type { BaseEnv } from "./build/types.js";
+import createBaseConfig from "./webpack.config.js";
 import type { Configuration } from "webpack";
 import "webpack-dev-server";
 

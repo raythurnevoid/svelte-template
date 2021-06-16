@@ -1,8 +1,8 @@
 // import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "path";
-import type { BaseEnv } from "./build/types";
+import type { BaseEnv } from "./build/types.js";
 import type { Configuration } from "webpack";
-import { createConfig } from "./build/config";
+import { createConfig } from "./build/config/index.js";
 
 export default function config(env: BaseEnv): Configuration {
 	if (!process.env.NODE_ENV) {

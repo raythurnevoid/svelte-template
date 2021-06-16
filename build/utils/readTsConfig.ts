@@ -1,6 +1,8 @@
 import type { CompilerOptions } from "typescript";
-import { readConfigFile, sys } from "typescript";
+import * as typescript from "typescript";
 import { resolve } from "path";
+
+const { readConfigFile, sys } = typescript;
 
 export function getTsConfigPath(path = resolve("./tsconfig.json")) {
 	return path;
@@ -44,9 +46,7 @@ export function readTsConfig(path = getTsConfigPath()) {
 	return result;
 }
 
-function loadTsConfigFile(
-	filePath: string
-): {
+function loadTsConfigFile(filePath: string): {
 	extends?: string;
 	compilerOptions?: CompilerOptions;
 } {

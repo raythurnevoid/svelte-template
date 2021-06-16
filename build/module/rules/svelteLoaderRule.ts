@@ -1,10 +1,10 @@
-import { preprocessConfig } from "../../../svelte.config";
-import type { BaseInput } from "../../types";
-import { babelLoader, TsLoaderInput } from "./loaders";
-import sveltePreprocess from "svelte-preprocess";
-import { getTsConfigPath } from "../../utils/readTsConfig";
-import { mjsLoaderRule } from "./mjsLoaderRule";
 import type { RuleSetRule } from "webpack";
+import sveltePreprocess from "svelte-preprocess";
+import { preprocessConfig } from "../../../svelte.config.js";
+import type { BaseInput } from "../../types.js";
+import { babelLoader, TsLoaderInput } from "./loaders/index.js";
+import { getTsConfigPath } from "../../utils/readTsConfig.js";
+import { mjsLoaderRule } from "./mjsLoaderRule.js";
 
 export function getPreprocessConfig(input: SvelteLoaderRulePreprocessInput) {
 	return {

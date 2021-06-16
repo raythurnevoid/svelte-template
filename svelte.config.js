@@ -1,8 +1,8 @@
 /** @type {import('svelte-preprocess')["default"]} */
-const sveltePreprocess = require("svelte-preprocess");
-const path = require("path");
+import sveltePreprocess from "svelte-preprocess";
+import path from "path";
 
-const preprocessConfig = {
+export const preprocessConfig = {
 	typescript: {
 		tsconfigFile: path.resolve("tsconfig.json"),
 	},
@@ -11,8 +11,7 @@ const preprocessConfig = {
 	},
 };
 
-module.exports["preprocessConfig"] = preprocessConfig;
-module.exports = {
+export default {
 	preprocess: sveltePreprocess(preprocessConfig),
 	preprocessConfig,
 };

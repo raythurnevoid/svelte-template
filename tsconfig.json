@@ -2,8 +2,8 @@
 	"extends": "@tsconfig/svelte/tsconfig.json",
 	"compilerOptions": {
 		"baseUrl": ".",
-		"target": "ES2019",
-		"module": "es2020",
+		"target": "ESNext",
+		"module": "ESNext",
 		"lib": [
 			"DOM",
 			"ES2020",
