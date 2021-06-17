@@ -6,6 +6,7 @@
 	},
 	"include": [
 		"webpack*.ts",
+		"svelte.config.js",
 		"build/**/*"
 	]
 }
