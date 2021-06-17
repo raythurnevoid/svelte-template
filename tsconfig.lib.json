@@ -3,10 +3,12 @@
 	"compilerOptions": {
 		"outDir": "./lib",
 		"sourceMap": false,
-		"declaration": true
+		"declaration": true,
+		"allowJs": true
 	},
 	"include": [
 		"webpack*.ts",
-		"build/**/*"
+		"svelte.config.js",
+		"build/**/*",
 	]
 }

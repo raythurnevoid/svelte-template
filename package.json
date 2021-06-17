@@ -1,11 +1,11 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"scripts": {
 		"clean-lib": "del-cli lib",
 		"copy:package:cjs": "copyfiles --up 1 cjs/* lib/cjs",
 		"copy:package": "copyfiles package.json tsconfig.json lib",
-		"copy:cjs": "copyfiles tsconfig.json webpack* svelte.config.js lib/cjs",
+		"copy:cjs": "copyfiles tsconfig.json webpack* lib/cjs",
 		"copy:src": "copyfiles build/**/*.* webpack* svelte.config.js lib/src",
 		"tsc:cjs": "tsc -p tsconfig.lib.cjs.json",
 		"tsc": "tsc -p tsconfig.lib.json",
