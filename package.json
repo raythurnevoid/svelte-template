@@ -1,6 +1,6 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"scripts": {
 		"clean-lib": "del-cli lib",
 		"copy:package:cjs": "copyfiles cjs/* lib",
@@ -27,12 +27,12 @@
 		"last 1 year and >5% and supports es6-module"
 	],
 	"devDependencies": {
-		"@tsconfig/svelte": "^2.0.1",
 		"@types/copy-webpack-plugin": "^8.0.0",
 		"@types/node": "^15.12.2",
 		"@types/webpack-dev-server": "^3.11.4"
 	},
 	"dependencies": {
+		"@tsconfig/svelte": "^2.0.1",
 		"@raythurnevoid/ts-node-template": "^0.1.0",
 		"clean-webpack-plugin": "^3.0.0",
 		"copy-webpack-plugin": "^9.0.0",
