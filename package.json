@@ -1,26 +1,24 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"scripts": {
 		"clean-lib": "del-cli lib",
-		"copy:package:cjs": "copyfiles cjs/* lib",
-		"copy:package": "copyfiles package.json lib",
-		"copy:src": "copyfiles --up 1 src/lib/*.* lib/src",
+		"copy:package:cjs": "copyfiles --up 1 cjs/* lib/cjs",
+		"copy:cjs": "npm run copy:package:cjs && copyfiles build/**/*.* tsconfig.json webpack* svelte.config.js lib/cjs",
+		"copy": "copyfiles build/**/*.* package.json tsconfig.json webpack* svelte.config.js lib",
+		"tsc:cjs": "tsc -p tsconfig.lib.cjs.json",
 		"tsc": "tsc -p tsconfig.lib.json",
-		"lib": "npm-run-all clean-lib copy tsc",
+		"lib": "npm-run-all clean-lib copy copy:cjs tsc tsc:cjs",
 		"prepackage": "npm run lib",
 		"package": "npm publish ./lib --access public",
 		"env": "cross-env TS_NODE_PROJECT=\"tsconfig.tsnode.json\" NODE_OPTIONS=--loader=ts-node/esm",
-		"ts-node": "npm run env -- node -r ts-node/register -r tsconfig-paths/register --",
-		"ts-node:inspect": "npm run ts-node -- --inspect --",
 		"webpack": "npm run env -- webpack",
 		"dev": "npm run webpack -- serve --config webpack.config.devserver.ts --open --env fancyProgress",
 		"build": "npm run webpack -- --env production --env fancyProgress",
 		"watch": "npm run webpack -- --watch --env fancyProgress",
 		"analyze": "npm run webpack -- --env analyzeBundle --env fancyProgress",
 		"start": "sirv dist",
-		"validate": "svelte-check",
-		"copy": "copyfiles ./build/**/*.* package.json tsconfig.json webpack* svelte.config.js lib"
+		"validate": "svelte-check"
 	},
 	"type": "module",
 	"browserslist": [
