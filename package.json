@@ -1,6 +1,6 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.1.5",
+	"version": "0.1.6",
 	"scripts": {
 		"clean-lib": "del-cli lib",
 		"copy:package:cjs": "copyfiles --up 1 cjs/* lib/cjs",
@@ -27,38 +27,39 @@
 		"./*": {
 			"import": "./*",
 			"require": "./cjs/*"
-		}
+		},
+		"./cjs/*": "./cjs/*"
 	},
 	"browserslist": [
 		"last 1 year and >5% and supports es6-module"
 	],
 	"devDependencies": {
-		"@types/copy-webpack-plugin": "^8.0.0",
-		"@types/node": "^15.12.2",
-		"@types/webpack-dev-server": "^3.11.4"
+		"@types/copy-webpack-plugin": "^8.0.1",
+		"@types/node": "^16.0.1",
+		"@types/webpack-dev-server": "^3.11.5"
 	},
 	"dependencies": {
 		"@tsconfig/svelte": "^2.0.1",
 		"@raythurnevoid/ts-node-template": "^0.1.0",
 		"clean-webpack-plugin": "^3.0.0",
-		"copy-webpack-plugin": "^9.0.0",
+		"copy-webpack-plugin": "^9.0.1",
 		"css-loader": "^5.2.6",
-		"css-minimizer-webpack-plugin": "^3.0.1",
+		"css-minimizer-webpack-plugin": "^3.0.2",
 		"file-loader": "^6.2.0",
-		"fork-ts-checker-webpack-plugin": "^6.2.10",
-		"mini-css-extract-plugin": "^1.6.0",
-		"sass": "^1.35.1",
+		"fork-ts-checker-webpack-plugin": "^6.2.12",
+		"mini-css-extract-plugin": "^2.1.0",
+		"sass": "^1.35.2",
 		"sass-loader": "^12.1.0",
 		"sirv-cli": "^1.0.12",
-		"style-loader": "^2.0.0",
-		"svelte": "^3.38.2",
-		"svelte-check": "^2.1.0",
+		"style-loader": "^3.0.0",
+		"svelte": "^3.38.3",
+		"svelte-check": "^2.2.1",
 		"svelte-loader": "^3.1.2",
 		"svelte-preprocess": "^4.7.3",
 		"ts-loader": "9.2.3",
 		"tsconfig-paths-webpack-plugin": "^3.5.1",
 		"tslib": "^2.3.0",
-		"webpack": "^5.39.0",
+		"webpack": "^5.43.0",
 		"webpack-bundle-analyzer": "^4.4.2",
 		"webpack-cli": "^4.7.2",
 		"webpack-dev-server": "^3.11.2",
