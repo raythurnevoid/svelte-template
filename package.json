@@ -1,6 +1,6 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"scripts": {
 		"clean-lib": "del-cli lib",
 		"copy:package:cjs": "copyfiles --up 1 cjs/* lib/cjs",
@@ -22,6 +22,13 @@
 		"validate": "svelte-check"
 	},
 	"type": "module",
+	"exports": {
+		"./package.json": "./package.json",
+		"./*": {
+			"import": "./*",
+			"require": "./cjs/*"
+		}
+	},
 	"browserslist": [
 		"last 1 year and >5% and supports es6-module"
 	],
