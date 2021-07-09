@@ -18,6 +18,7 @@ import {
 import type { BaseInput } from "../types.js";
 import type { Configuration, WebpackPluginInstance } from "webpack";
 import { tsConfigPathPlugin } from "../resolve/plugins/index.js";
+import type { AutoPreprocessOptions } from "svelte-preprocess/dist/types";
 
 const alias = {
 	svelte: path.resolve("node_modules", "svelte"),
@@ -25,9 +26,9 @@ const alias = {
 };
 const extensions = [".ts", ".mjs", ".js", ".svelte"];
 
-export function createConfig(
-	input: SvelteTempalteConfigurationInput
-): Configuration {
+export async function createConfig(
+	input: SvelteTemplateConfigurationInput
+): Promise<Configuration> {
 	const { env } = input;
 
 	let mainFields = ["svelte", "browser", "module", "main"];
@@ -75,7 +76,11 @@ export function createConfig(
 		module: {
 			rules: [
 				tsLoaderRule({ env }),
-				...svelteLoaderRule({ env, emitCss: input.extractCss }),
+				...(await svelteLoaderRule({
+					env,
+					emitCss: input.extractCss,
+					autoPreprocessConfig: input.svelteAutoPreprocessConfig,
+				})),
 				scssLoaderRule({ env, extract: input.extractCss }),
 				scssModulesLoaderRule({ env, extract: input.extractCss }),
 				fileLoaderRule(),
@@ -92,6 +97,7 @@ export function createConfig(
 	return conf;
 }
 
-export interface SvelteTempalteConfigurationInput extends BaseInput {
+export interface SvelteTemplateConfigurationInput extends BaseInput {
 	extractCss?: boolean;
+	svelteAutoPreprocessConfig?: AutoPreprocessOptions;
 }

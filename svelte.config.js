@@ -2,7 +2,7 @@
 import sveltePreprocess from "svelte-preprocess";
 import path from "path";
 
-export const preprocessConfig = {
+export const autoPreprocessConfig = {
 	typescript: {
 		tsconfigFile: path.resolve("tsconfig.json"),
 	},
@@ -12,6 +12,6 @@ export const preprocessConfig = {
 };
 
 export default {
-	preprocess: sveltePreprocess(preprocessConfig),
-	preprocessConfig,
+	preprocess: sveltePreprocess(autoPreprocessConfig),
+	autoPreprocessConfig,
 };

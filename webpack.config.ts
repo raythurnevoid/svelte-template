@@ -4,7 +4,7 @@ import type { BaseEnv } from "./build/types.js";
 import type { Configuration } from "webpack";
 import { createConfig } from "./build/config/index.js";
 
-export default function config(env: BaseEnv): Configuration {
+export default async function config(env: BaseEnv): Promise<Configuration> {
 	if (!process.env.NODE_ENV) {
 		process.env.NODE_ENV = env?.production ? "production" : "development";
 	}
@@ -13,7 +13,7 @@ export default function config(env: BaseEnv): Configuration {
 
 	delete process.env.TS_NODE_PROJECT;
 
-	const baseConfig = createConfig({
+	const baseConfig = await createConfig({
 		env,
 		extractCss: true,
 	});

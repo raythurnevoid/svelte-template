@@ -4,8 +4,8 @@ import createBaseConfig from "./webpack.config.js";
 import type { Configuration } from "webpack";
 import "webpack-dev-server";
 
-export default function config(env: BaseEnv): Configuration {
-	const baseConfig = createBaseConfig(env);
+export default async function config(env: BaseEnv): Promise<Configuration> {
+	const baseConfig = await createBaseConfig(env);
 
 	return {
 		...baseConfig,
