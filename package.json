@@ -1,6 +1,6 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"scripts": {
 		"clean-lib": "del-cli lib",
 		"copy:package:cjs": "copyfiles --up 1 cjs/* lib/cjs",
@@ -9,7 +9,7 @@
 		"copy:src": "copyfiles build/**/*.* webpack* svelte.config.js lib/src",
 		"tsc:cjs": "tsc -p tsconfig.lib.cjs.json",
 		"tsc": "tsc -p tsconfig.lib.json",
-		"lib": "npm-run-all clean-lib copy:package copy:package:cjs copy:src copy:cjs tsc tsc:cjs",
+		"lib": "npm-run-all clean-lib copy:package copy:src copy:cjs tsc tsc:cjs copy:package:cjs",
 		"prepackage": "npm run lib",
 		"package": "npm publish ./lib --access public",
 		"env": "cross-env TS_NODE_PROJECT=\"tsconfig.tsnode.json\" NODE_OPTIONS=--loader=ts-node/esm",
