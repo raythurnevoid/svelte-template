@@ -1,7 +1,6 @@
 import { doesExists } from "./file.js";
 import { cwd } from "process";
 import { resolve } from "path";
-import { type } from "../../package.json";
 
 export async function getSvelteConfigPath(path?: string) {
 	const extensions = ["mjs", "cjs", "js"] as const;
@@ -26,7 +25,7 @@ export async function readSvelteConfig(filePath) {
 	try {
 		filePath ??= await getSvelteConfigPath();
 		let m: any;
-		if (type === "module") {
+		if (typeof module === "undefined") {
 			m = await import(`file://${filePath}`);
 		} else {
 			m = await import(filePath);

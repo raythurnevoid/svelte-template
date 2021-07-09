@@ -7,7 +7,7 @@ export const autoPreprocessConfig = {
 		tsconfigFile: path.resolve("tsconfig.json"),
 	},
 	scss: {
-		includePaths: [path.resolve("."), path.resolve("./node_modules")],
+		includePaths: [path.resolve("."), path.resolve("node_modules")],
 	},
 };
 

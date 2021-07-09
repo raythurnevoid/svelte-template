@@ -4,9 +4,4 @@
 		"outDir": "./lib/cjs",
 		"module": "CommonJS"
 	},
-	"include": [
-		"webpack*.ts",
-		"svelte.config.js",
-		"build/**/*"
-	]
 }

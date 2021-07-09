@@ -16,6 +16,12 @@
 			"node"
 		]
 	},
+	"include": [
+		"webpack*.ts",
+		"svelte.config.js",
+		"build/**/*",
+		"src/**/*",
+	],
 	"exclude": [
 		"**/node_modules/*",
 		"public/*"

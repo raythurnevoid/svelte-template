@@ -6,9 +6,4 @@
 		"declaration": true,
 		"allowJs": true
 	},
-	"include": [
-		"webpack*.ts",
-		"svelte.config.js",
-		"build/**/*",
-	]
 }
