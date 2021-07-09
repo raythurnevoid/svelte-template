@@ -1,6 +1,6 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.2.3",
+	"version": "0.2.10",
 	"scripts": {
 		"clean-lib": "del-cli lib",
 		"copy:package:cjs": "copyfiles --up 1 cjs/* lib/cjs",
@@ -40,8 +40,8 @@
 		"@types/webpack-dev-server": "^3.11.5"
 	},
 	"dependencies": {
-		"@raythurnevoid/ts-node-template": "^0.1.0",
 		"@tsconfig/svelte": "^2.0.1",
+		"@raythurnevoid/ts-node-template": "^0.1.0",
 		"clean-webpack-plugin": "^3.0.0",
 		"copy-webpack-plugin": "^9.0.1",
 		"css-loader": "^5.2.6",
@@ -60,7 +60,7 @@
 		"ts-loader": "9.2.3",
 		"tsconfig-paths-webpack-plugin": "^3.5.1",
 		"tslib": "^2.3.0",
-		"webpack": "^5.44.0",
+		"webpack": "^5.43.0",
 		"webpack-bundle-analyzer": "^4.4.2",
 		"webpack-cli": "^4.7.2",
 		"webpack-dev-server": "^3.11.2",
