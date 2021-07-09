@@ -1,6 +1,7 @@
 import { doesExists } from "./file.js";
 import { cwd } from "process";
 import { resolve } from "path";
+import { type } from "package.json";
 
 export async function getSvelteConfigPath(path?: string) {
 	const extensions = ["mjs", "cjs", "js"] as const;
@@ -24,7 +25,12 @@ export async function getSvelteConfigPath(path?: string) {
 export async function readSvelteConfig(filePath) {
 	try {
 		filePath ??= await getSvelteConfigPath();
-		const m = await import(`file://${filePath}`);
+		let m: any;
+		if (type === "module") {
+			m = await import(`file://${filePath}`);
+		} else {
+			m = await import(filePath);
+		}
 		return m.default;
 	} catch (e) {
 		const error = `Error loading svelte.config file: ${filePath}.\n Caused by > ${e.stack}`;
