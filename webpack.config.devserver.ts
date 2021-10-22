@@ -11,8 +11,7 @@ export default async function config(env: BaseEnv): Promise<Configuration> {
 		...baseConfig,
 		// @ts-ignore
 		devServer: {
-			contentBase: path.resolve("dist"),
-			writeToDisk: true,
+			static: { directory: path.resolve("dist") },
 			hot: true,
 		},
 	};
