@@ -21,9 +21,9 @@ export async function getSvelteConfigPath(path?: string) {
 	return resolved;
 }
 
-export async function readSvelteConfig(filePath) {
+export async function readSvelteConfig(inputFilePath) {
 	try {
-		filePath ??= await getSvelteConfigPath();
+		const filePath = inputFilePath ?? (await getSvelteConfigPath());
 		let m: any;
 		if (typeof module === "undefined") {
 			m = await import(`file://${filePath}`);
@@ -32,7 +32,11 @@ export async function readSvelteConfig(filePath) {
 		}
 		return m.default;
 	} catch (e) {
-		const error = `Error loading svelte.config file: ${filePath}.\n Caused by > ${e.stack}`;
-		throw new Error(error);
+		if (inputFilePath) {
+			const error = `Error loading svelte.config file: ${inputFilePath}.\n Caused by > ${e.stack}`;
+			throw new Error(error);
+		} else {
+			return {};
+		}
 	}
 }

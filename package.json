@@ -1,6 +1,6 @@
 {
 	"name": "@raythurnevoid/svelte-template",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"scripts": {
 		"clean-lib": "del-cli lib",
 		"copy:package:cjs": "copyfiles --up 1 cjs/* lib/cjs",
