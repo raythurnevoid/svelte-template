@@ -6,11 +6,16 @@ export function scssLoader(input: ScssLoaderInput) {
 		loader: "sass-loader",
 		options: {
 			sassOptions: {
-				includePaths: [path.resolve("../../../../node_modules")],
+				includePaths: [
+					path.resolve("../../../../src"),
+					path.resolve("../../../../node_modules"),
+				],
 			},
 			sourceMap: !input.env.production,
 		},
 	};
 }
 
-interface ScssLoaderInput extends BaseInput {}
+export interface ScssLoaderInput extends BaseInput {
+	includePaths?: string[];
+}

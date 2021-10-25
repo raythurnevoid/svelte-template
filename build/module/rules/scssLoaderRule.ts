@@ -1,6 +1,6 @@
 import type { BaseInput } from "../../types.js";
 import { cssLoader, scssLoader } from "./loaders/index.js";
-import type { CssLoaderInput } from "./loaders/index.js";
+import type { CssLoaderInput, ScssLoaderInput } from "./loaders/index.js";
 import type { RuleSetRule } from "webpack";
 
 export function scssLoaderRule(input: ScssLoaderRuleInput): RuleSetRule {
@@ -17,4 +17,5 @@ export function scssLoaderRule(input: ScssLoaderRuleInput): RuleSetRule {
 
 export interface ScssLoaderRuleInput
 	extends BaseInput,
-		Pick<CssLoaderInput, "extract"> {}
+		Pick<CssLoaderInput, "extract">,
+		ScssLoaderInput {}

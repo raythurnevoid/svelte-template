@@ -82,8 +82,16 @@ export async function createConfig(
 					autoPreprocessConfig: input.svelteAutoPreprocessConfig,
 					svelteConfigPath: input.svelteConfigPath,
 				})),
-				scssLoaderRule({ env, extract: input.extractCss }),
-				scssModulesLoaderRule({ env, extract: input.extractCss }),
+				scssLoaderRule({
+					env,
+					extract: input.extractCss,
+					includePaths: input.includePathsCss,
+				}),
+				scssModulesLoaderRule({
+					env,
+					extract: input.extractCss,
+					includePaths: input.includePathsCss,
+				}),
 				fileLoaderRule(),
 			],
 		},
@@ -99,6 +107,7 @@ export async function createConfig(
 }
 
 export interface SvelteTemplateConfigurationInput extends BaseInput {
+	includePathsCss?: string[];
 	extractCss?: boolean;
 	svelteAutoPreprocessConfig?: AutoPreprocessOptions;
 	svelteConfigPath?: string;
