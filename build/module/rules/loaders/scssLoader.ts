@@ -7,7 +7,7 @@ export function scssLoader(input: ScssLoaderInput) {
 		options: {
 			sassOptions: {
 				includePaths: input.includePaths ?? [
-					path.resolve("../../../../src"),
+					path.resolve("../../../.."),
 					path.resolve("../../../../node_modules"),
 				],
 			},
