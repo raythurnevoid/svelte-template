@@ -54,6 +54,7 @@ export async function createConfig(
 
 	const minimizers: WebpackPluginInstance[] = [];
 	if (input.env.production) {
+		minimizers.push("..." as any);
 		minimizers.push(cssMinimizerPlugin());
 	}
 
