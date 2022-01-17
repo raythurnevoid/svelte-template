@@ -3,7 +3,7 @@ import type { BaseInput } from "../../../types.js";
 import { babelLoader, TsLoaderInput } from "./index.js";
 import { readSvelteConfig } from "../../../utils/readSvelteConfig.js";
 import type { AutoPreprocessOptions } from "svelte-preprocess/dist/types";
-import { sveltePreprocess } from "svelte-loader";
+import sveltePreprocess from "svelte-preprocess";
 
 export async function svelteLoader(input: SvelteLoaderInput) {
 	const use = [];
